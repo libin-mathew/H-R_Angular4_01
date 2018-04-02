@@ -4,6 +4,7 @@ window.addEventListener("load",bindEvents);
 function bindEvents(){
     document.querySelector("#add").addEventListener("click",addItem);
     document.querySelector("#delete").addEventListener("click",deleteItem);
+    document.querySelector("#search").addEventListener("click",searchItem);
 }
 function toggleDelete(){
     var currentRowId = this.getAttribute("item-id");
@@ -11,7 +12,7 @@ function toggleDelete(){
     var tr = this.parentNode.parentNode;
     tr.classList.toggle("red");
     itemOperations.mark(currentRowId);
-   document.querySelector("#mark").innerHTML =  itemOperations.countMark();
+    document.querySelector("#mark").innerHTML =  itemOperations.countMark();
     //var itemObject = itemOperations.searchById(currentRowId);
     // itemObject.markForDelete = !itemObject.markForDelete;
 }
@@ -42,6 +43,7 @@ function addItem(){
    printRow(item);
     console.log("Add Call.. ",item);
 }
+// Delete approach One
 function deleteItem(){
     console.log("delete");
     itemOperations.deleteItem();
@@ -70,6 +72,20 @@ function printRow(item){
     var td = tr.insertCell(index);
     td.appendChild(createIcon("images/delete.png",toggleDelete,item.id));
     td.appendChild(createIcon("images/edit.png",edit,item.id));
+}
+function searchItem(){
+    var txtId = document.querySelector("#id");
+    var data = itemOperations.searchById(txtId.value);
+    console.log(data);
+    if(data !==null){
+        for(let key in data){
+            if(key=='markForDelete'){
+                continue;
+            }
+            document.querySelector("#"+key).value = data[key]
+            console.log("key:"+key+" , val :"+ data[key]);
+        }
+    }
 }
  const fillCell=(index,value,tr)=>tr.insertCell(index).innerHTML = value;
 
