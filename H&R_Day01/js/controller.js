@@ -3,6 +3,7 @@
 window.addEventListener("load",bindEvents);
 function bindEvents(){
     document.querySelector("#add").addEventListener("click",addItem);
+    document.querySelector("#delete").addEventListener("click",deleteItem);
 }
 function toggleDelete(){
     var currentRowId = this.getAttribute("item-id");
@@ -40,6 +41,14 @@ function addItem(){
    itemOperations.addItem(item);
    printRow(item);
     console.log("Add Call.. ",item);
+}
+function deleteItem(){
+    console.log("delete");
+    itemOperations.deleteItem();
+    var rows = document.querySelectorAll(".red");
+    rows.forEach(row => {
+        row.parentNode.removeChild(row);
+    });
 }
 function printRow(item){
     console.log("item is ",item);

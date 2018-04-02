@@ -17,5 +17,8 @@ const itemOperations = {
     mark(id){
         var itemObject = this.searchById(id);
         itemObject.toggle();
+    },
+    deleteItem(){
+        this.itemArray = this.itemArray.filter(itemObject=>!itemObject.markForDelete);
     }
 }
