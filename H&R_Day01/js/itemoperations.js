@@ -2,6 +2,9 @@
 
 const itemOperations = {
     itemArray:[],
+    deleteMarkItem(){
+        this.itemArray = this.itemArray.filter(itemObject=>itemObject.markForDelete==false)
+    },
     addItem(itemObject){
        this.itemArray.push(itemObject); 
     },
@@ -18,24 +21,20 @@ const itemOperations = {
         var itemObject = this.searchById(id);
         itemObject.toggle();
     },
-    deleteItem(){
-        this.itemArray = this.itemArray.filter(itemObject=>!itemObject.markForDelete);
-    },
     findIndexOfItem(id){
         return this.itemArray.findIndex(itemObject=>itemObject.id==id);
     },
-    updateItem(id,updatedData){
-        //var itemObject = this.searchById(id);
-        var indexOfItem = this.findIndexOfItem(id);
-        var data = this.itemArray[indexOfItem];
+    updateData(itemObject){
+        var indexOfItem = this.findIndexOfItem(itemObject.id);
         var item  = new Item(0,"",0,"","","","");
         for(let key in item){  
          if(key=='markForDelete'){
              continue;
          }
-         item[key] = document.querySelector("#"+key)
-            .value;
-            data[key]=updatedData[key];  
+         this.itemArray[indexOfItem][key] =itemObject[key];
         }
+    },
+    sort() {
+          this.itemArray.sort((a,b)=>a.price-b.price);
     }
 }
