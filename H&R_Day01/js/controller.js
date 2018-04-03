@@ -17,7 +17,10 @@ function toggleDelete(){
     // itemObject.markForDelete = !itemObject.markForDelete;
 }
 function edit(){
-    console.log("edit call");
+    var txtId = document.querySelector("#id");
+    var data = itemOperations.searchById(txtId.value);
+    fetchToInputFileds(data);
+    console.log(data);
 }
 function createIcon(path,fn,id){
     var img = document.createElement("img");
@@ -88,5 +91,16 @@ function searchItem(){
     }
 }
  const fillCell=(index,value,tr)=>tr.insertCell(index).innerHTML = value;
+
+ function fetchToInputFileds(data){
+    if(data !==null){
+        for(let key in data){
+            if(key=='markForDelete'){
+                continue;
+            }
+            document.querySelector("#"+key).value = data[key]
+        }
+    }
+ }
 
 //bindEvents();
