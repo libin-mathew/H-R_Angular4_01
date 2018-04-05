@@ -1,0 +1,8 @@
+#productTable td 
+{
+    text-align:center; 
+    vertical-align:middle;
+}
+.btnImg { cursor: pointer;
+    height:30px ;width:30px;
+}

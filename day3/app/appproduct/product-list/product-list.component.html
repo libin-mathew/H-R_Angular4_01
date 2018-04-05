@@ -1,0 +1,33 @@
+<div class="jumbotron">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Image
+                    <img (click)="sort($event)" id="asc" src="./assets/image/upKey.png" class="btnImg">
+                    <img (click)="sort($event)" id="dsc" src="./assets/image/downKey.png" class="btnImg">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let product of productList'>
+                <td>{{product._productId}}</td>
+                <td>{{product._productName}}</td>
+                <td>{{product._price}}</td>
+                <td>
+                    <img [src]="product._image" width="100px" height="100px">
+                </td>
+                <!-- <app-product [product]="product"></app-product> -->
+            </tr>
+        </tbody>
+    </table>
+</div>

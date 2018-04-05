@@ -1,6 +1,7 @@
 import { Item } from './item'
 
 const itemOperations = {
+    var bks: Item[] = [],
     itemArray: [],
     deleteMarkItem() {
         this.itemArray = this.itemArray.filter((itemObject: Item) => itemObject.getMarkForDelete == false)
